@@ -1,0 +1,25 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Usuario {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  email     String   @unique
+  posts     Post[]   // relação 1:N
+  criadoEm  DateTime @default(now())
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  titulo    String
+  conteudo  String?
+  usuario   Usuario  @relation(fields: [usuarioId], references: [id])
+  usuarioId Int
+  criadoEm  DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+}
