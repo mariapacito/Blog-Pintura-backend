@@ -10,7 +10,7 @@ model Usuario {
   id        Int      @id @default(autoincrement())
   nome      String
   email     String   @unique
-  posts     Post[]   // relação 1:N
+  posts     Post[] 
   criadoEm  DateTime @default(now())
 }
 
