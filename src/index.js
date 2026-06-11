@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { auth } from "./lib/auth.js";
 import { toNodeHandler } from "better-auth/node";
+import { requireAuth } from "./middleware/auth.js";
 
 dotenv.config();
 
@@ -31,4 +32,11 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor em http://localhost:${PORT}`);
   console.log(`Auth disponível em http://localhost:${PORT}/api/auth`);
+});
+
+app.get("/api/me", requireAuth, (req, res) => {
+  res.json({
+    message: "Bem-vindo ao seu perfil!",
+    user: req.user, // Dados vindos do middleware
+  });
 });
