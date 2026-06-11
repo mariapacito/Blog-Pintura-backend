@@ -1,25 +1,137 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
 datasource db {
   provider = "postgresql"
 }
 
-generator client {
-  provider = "prisma-client-js"
+model Plan {
+  id        Int     @id @default(autoincrement())
+  name      String
+  price     Decimal @db.Decimal(10, 2)
+  maxLinks  Int     @map("max_links")
+  maxClicks Int     @map("max_clicks")
+  users     User[]
+
+  @@map("plans")
 }
 
-model Usuario {
-  id        Int      @id @default(autoincrement())
-  nome      String
-  email     String   @unique
-  posts     Post[] 
-  criadoEm  DateTime @default(now())
+model User {
+  id           String      @id
+  email        String      @unique
+  passwordHash String      @map("password_hash")
+  createdAt    DateTime    @default(now()) @map("created_at")
+  planId       Int?        @unique @map("plan_id")
+  plan         Plan?       @relation(fields: [planId], references: [id])
+  shortLinks   ShortLink[]
+  reports      Report[]
+
+  name          String
+  emailVerified Boolean   @default(false)
+  image         String?
+  updatedAt     DateTime  @updatedAt
+  sessions      Session[]
+  accounts      Account[]
+
+  posts         Post[]    
+
+  @@map("users")
+}
+
+model ShortLink {
+  id          BigInt       @id @default(autoincrement())
+  userId      String       @map("user_id")
+  originalUrl String       @map("original_url")
+  shortCode   String       @unique @map("short_code")
+  createdAt   DateTime     @default(now()) @map("created_at")
+  user        User         @relation(fields: [userId], references: [id])
+  clickTracks ClickTrack[]
+
+  @@map("short_links")
+}
+
+model ClickTrack {
+  id          String    @id @default(uuid())
+  shortLinkId BigInt    @map("short_link_id")
+  clickedAt   DateTime  @default(now()) @map("clicked_at")
+  referrer    String?
+  userAgent   String?   @map("user_agent")
+  shortLink   ShortLink @relation(fields: [shortLinkId], references: [id])
+
+  @@map("click_tracking")
+}
+
+model Report {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  reportType  String   @map("report_type")
+  generatedAt DateTime @default(now()) @map("generated_at")
+  data        Json?
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@map("reports")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+  @@map("verification")
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  titulo    String
-  conteudo  String?
-  usuario   Usuario  @relation(fields: [usuarioId], references: [id])
-  usuarioId Int
-  criadoEm  DateTime @default(now())
+  id           Int      @id @default(autoincrement())
+  titulo       String
+  conteudo     String?
+  usuario      User     @relation(fields: [usuarioId], references: [id])
+  usuarioId    String
+  criadoEm     DateTime @default(now())
   atualizadoEm DateTime @updatedAt
+
+  @@map("posts")
 }
