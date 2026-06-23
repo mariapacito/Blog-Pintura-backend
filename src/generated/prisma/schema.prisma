@@ -23,7 +23,7 @@ model Plan {
 model User {
   id           String      @id
   email        String      @unique
-  passwordHash String      @map("password_hash")
+  passwordHash String?     @map("password_hash")
   createdAt    DateTime    @default(now()) @map("created_at")
   planId       Int?        @unique @map("plan_id")
   plan         Plan?       @relation(fields: [planId], references: [id])

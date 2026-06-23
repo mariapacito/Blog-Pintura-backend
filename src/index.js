@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 import { auth } from "./lib/auth.js";
 import { toNodeHandler } from "better-auth/node";
@@ -9,9 +10,12 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const DATABASE_URL = process.env.DATABASE_URL;
 
 app.use(express.json());
+app.use(cors({
+  origin: "http://localhost:3000", // porta do Next.js
+  credentials: true,
+}));
 
 app.all("/api/auth/*path", toNodeHandler(auth));
 
@@ -38,7 +42,7 @@ app.listen(PORT, () => {
 app.get("/api/me", requireAuth, (req, res) => {
   res.json({
     message: "Bem-vindo ao seu perfil!",
-    user: req.user, // Dados vindos do middleware
+    user: req.user,
   });
 });
 

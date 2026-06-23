@@ -4,8 +4,10 @@ import { prisma } from "./prisma.js";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
-    provider: "postgresql", 
+    provider: "postgresql",
   }),
+
+  trustedOrigins: ["http://localhost:3000"], // ← porta do frontend Next.js
 
   emailAndPassword: {
     enabled: true,
@@ -15,14 +17,13 @@ export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET,
 
   session: {
-    expiresIn: 60 * 60 * 24 * 7, 
-    updateAge: 60 * 60 * 24, 
+    expiresIn: 60 * 60 * 24 * 7,
+    updateAge: 60 * 60 * 24,
     cookieCache: {
       enabled: true,
       maxAge: 5 * 60,
     },
   },
 
-  socialProviders: {
-  },
+  socialProviders: {},
 });
