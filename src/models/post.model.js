@@ -1,7 +1,8 @@
 import { prisma } from "../lib/prisma.js";
 
-export async function listarPosts() {
+export async function listarPosts(usuarioId) {
   return prisma.post.findMany({
+    where: { usuarioId },
     orderBy: { criadoEm: "desc" },
     include: { usuario: true },
   });

@@ -1,10 +1,13 @@
 import * as PostModel from "../models/post.model.js";
 
-// GET /api/posts
 export async function listar(req, res) {
   try {
-    const posts = await PostModel.listarPosts();
-    return res.json(posts);
+    if (!req.user) {
+      return res.status(401).json({ error: "Usuário não autenticado." });
+    }
+
+    const posts = await PostModel.listarPosts(req.user.id);
+    return res.json(Array.isArray(posts) ? posts : []); // ✅ sempre array
   } catch (error) {
     console.error("Erro ao listar posts:", error);
     return res.status(500).json({ error: "Erro interno ao listar os posts." });
