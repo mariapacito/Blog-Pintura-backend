@@ -10741,7 +10741,7 @@ export namespace Prisma {
   export type PostMinAggregateOutputType = {
     id: number | null
     titulo: string | null
-    conteudo: string | null
+    descricao: string | null
     usuarioId: string | null
     criadoEm: Date | null
     atualizadoEm: Date | null
@@ -10750,7 +10750,7 @@ export namespace Prisma {
   export type PostMaxAggregateOutputType = {
     id: number | null
     titulo: string | null
-    conteudo: string | null
+    descricao: string | null
     usuarioId: string | null
     criadoEm: Date | null
     atualizadoEm: Date | null
@@ -10759,7 +10759,7 @@ export namespace Prisma {
   export type PostCountAggregateOutputType = {
     id: number
     titulo: number
-    conteudo: number
+    descricao: number
     usuarioId: number
     criadoEm: number
     atualizadoEm: number
@@ -10778,7 +10778,7 @@ export namespace Prisma {
   export type PostMinAggregateInputType = {
     id?: true
     titulo?: true
-    conteudo?: true
+    descricao?: true
     usuarioId?: true
     criadoEm?: true
     atualizadoEm?: true
@@ -10787,7 +10787,7 @@ export namespace Prisma {
   export type PostMaxAggregateInputType = {
     id?: true
     titulo?: true
-    conteudo?: true
+    descricao?: true
     usuarioId?: true
     criadoEm?: true
     atualizadoEm?: true
@@ -10796,7 +10796,7 @@ export namespace Prisma {
   export type PostCountAggregateInputType = {
     id?: true
     titulo?: true
-    conteudo?: true
+    descricao?: true
     usuarioId?: true
     criadoEm?: true
     atualizadoEm?: true
@@ -10892,7 +10892,7 @@ export namespace Prisma {
   export type PostGroupByOutputType = {
     id: number
     titulo: string
-    conteudo: string | null
+    descricao: string | null
     usuarioId: string
     criadoEm: Date
     atualizadoEm: Date
@@ -10920,7 +10920,7 @@ export namespace Prisma {
   export type PostSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     titulo?: boolean
-    conteudo?: boolean
+    descricao?: boolean
     usuarioId?: boolean
     criadoEm?: boolean
     atualizadoEm?: boolean
@@ -10930,7 +10930,7 @@ export namespace Prisma {
   export type PostSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     titulo?: boolean
-    conteudo?: boolean
+    descricao?: boolean
     usuarioId?: boolean
     criadoEm?: boolean
     atualizadoEm?: boolean
@@ -10940,7 +10940,7 @@ export namespace Prisma {
   export type PostSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     titulo?: boolean
-    conteudo?: boolean
+    descricao?: boolean
     usuarioId?: boolean
     criadoEm?: boolean
     atualizadoEm?: boolean
@@ -10950,13 +10950,13 @@ export namespace Prisma {
   export type PostSelectScalar = {
     id?: boolean
     titulo?: boolean
-    conteudo?: boolean
+    descricao?: boolean
     usuarioId?: boolean
     criadoEm?: boolean
     atualizadoEm?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "titulo" | "conteudo" | "usuarioId" | "criadoEm" | "atualizadoEm", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "titulo" | "descricao" | "usuarioId" | "criadoEm" | "atualizadoEm", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     usuario?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -10975,7 +10975,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       titulo: string
-      conteudo: string | null
+      descricao: string | null
       usuarioId: string
       criadoEm: Date
       atualizadoEm: Date
@@ -11405,7 +11405,7 @@ export namespace Prisma {
   interface PostFieldRefs {
     readonly id: FieldRef<"Post", 'Int'>
     readonly titulo: FieldRef<"Post", 'String'>
-    readonly conteudo: FieldRef<"Post", 'String'>
+    readonly descricao: FieldRef<"Post", 'String'>
     readonly usuarioId: FieldRef<"Post", 'String'>
     readonly criadoEm: FieldRef<"Post", 'DateTime'>
     readonly atualizadoEm: FieldRef<"Post", 'DateTime'>
@@ -11949,7 +11949,7 @@ export namespace Prisma {
   export const PostScalarFieldEnum: {
     id: 'id',
     titulo: 'titulo',
-    conteudo: 'conteudo',
+    descricao: 'descricao',
     usuarioId: 'usuarioId',
     criadoEm: 'criadoEm',
     atualizadoEm: 'atualizadoEm'
@@ -12661,7 +12661,7 @@ export namespace Prisma {
     NOT?: PostWhereInput | PostWhereInput[]
     id?: IntFilter<"Post"> | number
     titulo?: StringFilter<"Post"> | string
-    conteudo?: StringNullableFilter<"Post"> | string | null
+    descricao?: StringNullableFilter<"Post"> | string | null
     usuarioId?: StringFilter<"Post"> | string
     criadoEm?: DateTimeFilter<"Post"> | Date | string
     atualizadoEm?: DateTimeFilter<"Post"> | Date | string
@@ -12671,7 +12671,7 @@ export namespace Prisma {
   export type PostOrderByWithRelationInput = {
     id?: SortOrder
     titulo?: SortOrder
-    conteudo?: SortOrderInput | SortOrder
+    descricao?: SortOrderInput | SortOrder
     usuarioId?: SortOrder
     criadoEm?: SortOrder
     atualizadoEm?: SortOrder
@@ -12684,7 +12684,7 @@ export namespace Prisma {
     OR?: PostWhereInput[]
     NOT?: PostWhereInput | PostWhereInput[]
     titulo?: StringFilter<"Post"> | string
-    conteudo?: StringNullableFilter<"Post"> | string | null
+    descricao?: StringNullableFilter<"Post"> | string | null
     usuarioId?: StringFilter<"Post"> | string
     criadoEm?: DateTimeFilter<"Post"> | Date | string
     atualizadoEm?: DateTimeFilter<"Post"> | Date | string
@@ -12694,7 +12694,7 @@ export namespace Prisma {
   export type PostOrderByWithAggregationInput = {
     id?: SortOrder
     titulo?: SortOrder
-    conteudo?: SortOrderInput | SortOrder
+    descricao?: SortOrderInput | SortOrder
     usuarioId?: SortOrder
     criadoEm?: SortOrder
     atualizadoEm?: SortOrder
@@ -12711,7 +12711,7 @@ export namespace Prisma {
     NOT?: PostScalarWhereWithAggregatesInput | PostScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Post"> | number
     titulo?: StringWithAggregatesFilter<"Post"> | string
-    conteudo?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    descricao?: StringNullableWithAggregatesFilter<"Post"> | string | null
     usuarioId?: StringWithAggregatesFilter<"Post"> | string
     criadoEm?: DateTimeWithAggregatesFilter<"Post"> | Date | string
     atualizadoEm?: DateTimeWithAggregatesFilter<"Post"> | Date | string
@@ -13298,7 +13298,7 @@ export namespace Prisma {
 
   export type PostCreateInput = {
     titulo: string
-    conteudo?: string | null
+    descricao?: string | null
     criadoEm?: Date | string
     atualizadoEm?: Date | string
     usuario: UserCreateNestedOneWithoutPostsInput
@@ -13307,7 +13307,7 @@ export namespace Prisma {
   export type PostUncheckedCreateInput = {
     id?: number
     titulo: string
-    conteudo?: string | null
+    descricao?: string | null
     usuarioId: string
     criadoEm?: Date | string
     atualizadoEm?: Date | string
@@ -13315,7 +13315,7 @@ export namespace Prisma {
 
   export type PostUpdateInput = {
     titulo?: StringFieldUpdateOperationsInput | string
-    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
     criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
     usuario?: UserUpdateOneRequiredWithoutPostsNestedInput
@@ -13324,7 +13324,7 @@ export namespace Prisma {
   export type PostUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     titulo?: StringFieldUpdateOperationsInput | string
-    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
     usuarioId?: StringFieldUpdateOperationsInput | string
     criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13333,7 +13333,7 @@ export namespace Prisma {
   export type PostCreateManyInput = {
     id?: number
     titulo: string
-    conteudo?: string | null
+    descricao?: string | null
     usuarioId: string
     criadoEm?: Date | string
     atualizadoEm?: Date | string
@@ -13341,7 +13341,7 @@ export namespace Prisma {
 
   export type PostUpdateManyMutationInput = {
     titulo?: StringFieldUpdateOperationsInput | string
-    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
     criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13349,7 +13349,7 @@ export namespace Prisma {
   export type PostUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     titulo?: StringFieldUpdateOperationsInput | string
-    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
     usuarioId?: StringFieldUpdateOperationsInput | string
     criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14010,7 +14010,7 @@ export namespace Prisma {
   export type PostCountOrderByAggregateInput = {
     id?: SortOrder
     titulo?: SortOrder
-    conteudo?: SortOrder
+    descricao?: SortOrder
     usuarioId?: SortOrder
     criadoEm?: SortOrder
     atualizadoEm?: SortOrder
@@ -14023,7 +14023,7 @@ export namespace Prisma {
   export type PostMaxOrderByAggregateInput = {
     id?: SortOrder
     titulo?: SortOrder
-    conteudo?: SortOrder
+    descricao?: SortOrder
     usuarioId?: SortOrder
     criadoEm?: SortOrder
     atualizadoEm?: SortOrder
@@ -14032,7 +14032,7 @@ export namespace Prisma {
   export type PostMinOrderByAggregateInput = {
     id?: SortOrder
     titulo?: SortOrder
-    conteudo?: SortOrder
+    descricao?: SortOrder
     usuarioId?: SortOrder
     criadoEm?: SortOrder
     atualizadoEm?: SortOrder
@@ -14981,7 +14981,7 @@ export namespace Prisma {
 
   export type PostCreateWithoutUsuarioInput = {
     titulo: string
-    conteudo?: string | null
+    descricao?: string | null
     criadoEm?: Date | string
     atualizadoEm?: Date | string
   }
@@ -14989,7 +14989,7 @@ export namespace Prisma {
   export type PostUncheckedCreateWithoutUsuarioInput = {
     id?: number
     titulo: string
-    conteudo?: string | null
+    descricao?: string | null
     criadoEm?: Date | string
     atualizadoEm?: Date | string
   }
@@ -15171,7 +15171,7 @@ export namespace Prisma {
     NOT?: PostScalarWhereInput | PostScalarWhereInput[]
     id?: IntFilter<"Post"> | number
     titulo?: StringFilter<"Post"> | string
-    conteudo?: StringNullableFilter<"Post"> | string | null
+    descricao?: StringNullableFilter<"Post"> | string | null
     usuarioId?: StringFilter<"Post"> | string
     criadoEm?: DateTimeFilter<"Post"> | Date | string
     atualizadoEm?: DateTimeFilter<"Post"> | Date | string
@@ -15772,7 +15772,7 @@ export namespace Prisma {
   export type PostCreateManyUsuarioInput = {
     id?: number
     titulo: string
-    conteudo?: string | null
+    descricao?: string | null
     criadoEm?: Date | string
     atualizadoEm?: Date | string
   }
@@ -15898,7 +15898,7 @@ export namespace Prisma {
 
   export type PostUpdateWithoutUsuarioInput = {
     titulo?: StringFieldUpdateOperationsInput | string
-    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
     criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15906,7 +15906,7 @@ export namespace Prisma {
   export type PostUncheckedUpdateWithoutUsuarioInput = {
     id?: IntFieldUpdateOperationsInput | number
     titulo?: StringFieldUpdateOperationsInput | string
-    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
     criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15914,7 +15914,7 @@ export namespace Prisma {
   export type PostUncheckedUpdateManyWithoutUsuarioInput = {
     id?: IntFieldUpdateOperationsInput | number
     titulo?: StringFieldUpdateOperationsInput | string
-    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
     criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
   }

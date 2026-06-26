@@ -5,6 +5,7 @@ import { auth } from "./lib/auth.js";
 import { toNodeHandler } from "better-auth/node";
 import { requireAuth } from "./middleware/auth.js";
 import planRoutes from "./routes/plan.routes.js";
+import postRoutes from "./routes/post.routes.js"; // ✅ import correto
 
 dotenv.config();
 
@@ -47,3 +48,4 @@ app.get("/api/me", requireAuth, (req, res) => {
 });
 
 app.use("/api/plans", planRoutes);
+app.use("/api/post", postRoutes);

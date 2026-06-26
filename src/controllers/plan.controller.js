@@ -19,19 +19,54 @@ export async function buscar(req, res) {
 
 // POST /api/plans
 export async function criar(req, res) {
-  const { name, price, maxLinks, maxClicks } = req.body;
+  try {
+    const { name, price, maxLinks, maxClicks } = req.body;
 
-  if (!name || price == null || maxLinks == null || maxClicks == null) {
-    return res.status(400).json({ error: "Todos os campos são obrigatórios." });
+    // Validação de presença
+    if (!name || price == null || maxLinks == null || maxClicks == null) {
+      return res.status(400).json({ error: "Todos os campos são obrigatórios." });
+    }
+
+    // Validação de tipo/formato
+    const nomeLimpo = String(name).trim();
+    const precoNum = Number(price);
+    const maxLinksNum = Number(maxLinks);
+    const maxClicksNum = Number(maxClicks);
+
+    if (!nomeLimpo) {
+      return res.status(400).json({ error: "O nome do plano não pode ser vazio." });
+    }
+
+    if (Number.isNaN(precoNum) || precoNum < 0) {
+      return res.status(400).json({ error: "O preço deve ser um número válido e não negativo." });
+    }
+
+    if (!Number.isInteger(maxLinksNum) || maxLinksNum < 0) {
+      return res.status(400).json({ error: "maxLinks deve ser um número inteiro válido e não negativo." });
+    }
+
+    if (!Number.isInteger(maxClicksNum) || maxClicksNum < 0) {
+      return res.status(400).json({ error: "maxClicks deve ser um número inteiro válido e não negativo." });
+    }
+
+    const plano = await PlanModel.criarPlano({
+      name: nomeLimpo,
+      price: precoNum,
+      maxLinks: maxLinksNum,
+      maxClicks: maxClicksNum,
+    });
+
+    return res.status(201).json(plano);
+  } catch (error) {
+    console.error("Erro ao criar plano:", error);
+
+    // Caso exista uma constraint de unicidade (ex: nome único)
+    if (error.code === "P2002") {
+      return res.status(409).json({ error: "Já existe um plano com esse nome." });
+    }
+
+    return res.status(500).json({ error: "Erro interno ao criar o plano." });
   }
-
-  const plano = await PlanModel.criarPlano({
-    name,
-    price,
-    maxLinks,
-    maxClicks,
-  });
-  return res.status(201).json(plano);
 }
 
 // PUT /api/plans/:id

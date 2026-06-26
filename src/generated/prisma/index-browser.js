@@ -203,7 +203,7 @@ exports.Prisma.VerificationScalarFieldEnum = {
 exports.Prisma.PostScalarFieldEnum = {
   id: 'id',
   titulo: 'titulo',
-  conteudo: 'conteudo',
+  descricao: 'descricao',
   usuarioId: 'usuarioId',
   criadoEm: 'criadoEm',
   atualizadoEm: 'atualizadoEm'
